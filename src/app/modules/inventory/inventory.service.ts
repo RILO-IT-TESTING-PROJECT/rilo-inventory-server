@@ -16,10 +16,7 @@ const addNewInventory = async (
   if (!createdInventory) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to add inventory')
   }
-  return await Inventory.findOne({ _id: createdInventory._id }).populate({
-    path: 'reviews',
-    populate: [{ path: 'user', select: { password: 0 } }],
-  })
+  return await Inventory.findOne({ _id: createdInventory._id })
 }
 
 const getAllInventories = async (
@@ -60,10 +57,6 @@ const getAllInventories = async (
     andConditions.length > 0 ? { $and: andConditions } : {}
 
   const result = await Inventory.find(whereConditions)
-    .populate({
-      path: 'reviews',
-      populate: [{ path: 'user', select: { password: 0 } }],
-    })
     .sort(sortConditions)
     .skip(skip)
     .limit(limit)
@@ -81,10 +74,7 @@ const getAllInventories = async (
 }
 
 const getSingleInventory = async (_id: string): Promise<IInventory | null> => {
-  const result = await Inventory.findOne({ _id }).populate({
-    path: 'reviews',
-    populate: [{ path: 'user', select: { password: 0 } }],
-  })
+  const result = await Inventory.findOne({ _id })
   return result
 }
 
@@ -99,9 +89,6 @@ const updateInventory = async (
 
   const result = await Inventory.findOneAndUpdate({ _id }, payload, {
     new: true,
-  }).populate({
-    path: 'reviews',
-    populate: [{ path: 'user', select: { password: 0 } }],
   })
 
   return result
@@ -114,10 +101,7 @@ const deleteInventory = async (_id: string): Promise<IInventory | null> => {
     throw new ApiError(httpStatus.NOT_FOUND, 'Inventory is not found!')
   }
 
-  const result = await Inventory.findByIdAndDelete(_id).populate({
-    path: 'reviews',
-    populate: [{ path: 'user', select: { password: 0 } }],
-  })
+  const result = await Inventory.findByIdAndDelete(_id)
   return result
 }
 
