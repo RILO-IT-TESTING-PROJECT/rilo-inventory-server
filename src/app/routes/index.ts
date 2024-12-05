@@ -1,6 +1,6 @@
 import express from 'express'
 import { UserRoutes } from '../modules/user/user.route'
-import { InventoryRoutes } from '../modules/inventory/product.route'
+import { InventoryRoutes } from '../modules/inventory/inventory.route'
 import { AuthRoutes } from '../modules/auth/auth.route'
 const router = express.Router()
 
