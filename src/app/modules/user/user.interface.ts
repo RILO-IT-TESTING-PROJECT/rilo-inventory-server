@@ -1,10 +1,14 @@
 import { Model } from 'mongoose'
 
 export type IUser = {
-  name: string
+  firstName: string
+  lastName: string
   email: string
+  phone: string
   password: string
   photoUrl: string
+  companyName: string
+  address: string
 }
 
 export type UserModel = {

@@ -2,8 +2,17 @@ import { z } from 'zod'
 
 const signupUserZodSchema = z.object({
   body: z.object({
-    name: z.string({
-      required_error: 'Name is required',
+    firstName: z.string({
+      required_error: 'First Name is required',
+    }),
+    lastName: z.string({
+      required_error: 'Last Name is required',
+    }),
+    companyName: z.string({
+      required_error: 'Company name is required',
+    }),
+    phone: z.string({
+      required_error: 'Company name is required',
     }),
     email: z.string({
       required_error: 'Email is required',
