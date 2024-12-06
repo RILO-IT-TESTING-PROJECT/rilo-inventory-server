@@ -14,7 +14,7 @@ router.post(
 
 router.get('/:id', InventoryController.getSingleInventory)
 
-router.get('/', InventoryController.getAllInventories)
+router.get('/', verifyUserAuth(), InventoryController.getAllInventories)
 
 router.patch('/:id', verifyUserAuth(), InventoryController.updateInventory)
 

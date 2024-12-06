@@ -29,13 +29,13 @@ inventorySchema.pre('save', async function (next) {
   if (productExist) {
     throw new ApiError(
       httpStatus.CONFLICT,
-      `${productExist.name} is already exist with same model ${productExist.model} for the sku ${productExist.sku}`
+      `${productExist.name} is already exist with same sku ${productExist.sku}`
     )
   }
   next()
 })
 
 export const Inventory = model<IInventory, InventoryModel>(
-  'Product',
+  'Inventory',
   inventorySchema
 )
